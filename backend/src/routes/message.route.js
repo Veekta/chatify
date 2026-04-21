@@ -1,5 +1,13 @@
 import express from 'express'
 
-const route = express.Router()
+const router = express.Router()
 
-Router.get()
+router.get("/receive", (req,res)=>{
+    res.send("Receive message endpoint")
+})
+
+router.get("/send", (req,res)=>{
+    res.send("Send message endpoint")
+})
+
+export default router
