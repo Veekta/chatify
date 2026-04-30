@@ -31,8 +31,13 @@ if(process.env.NODE_ENV === 'production'){
 
 }
 
-app.listen(PORT, ()=>{
-    console.log("Server is watching: " + PORT)
-    connectDB()
-}
-)
+connectDB()
+    .then(() => {
+    app.listen(PORT, () => {
+      console.log("Server is watching: " + PORT)
+    })
+  })
+  .catch((err) => {
+    console.error("Startup failed:", err)
+    process.exit(1)
+})
