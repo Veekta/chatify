@@ -9,7 +9,9 @@ export const connectDB = async()=>{
         throw new Error("MONGO_URI is not configured")
      }
         
-        const conn = await mongoose.connect(process.env.MONGO_URI)
+        const conn = await mongoose.connect(process.env.MONGO_URI,{family: 4,
+            serverSelectionTimeoutMS: 5000,
+            connectTimeoutMS: 10000,})
         console.log("MONGODB CONNECTED:", conn.connection.host)
 
     } catch (error) {
